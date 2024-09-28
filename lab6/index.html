@@ -7,8 +7,20 @@
 </head>
 <body>
     <canvas style="height: 150px; width: 150px;" id="canvasRandomTriangles"></canvas>
-    <script type="module" src="glsl.js"></script>
+    <canvas style="height: 350px; width: 350px;" id="canvasDrawWord"></canvas>
+    <div id="uiContainer">
+      <div id="ui">
+        <div id="x"></div>
+        <div id="y"></div>
+        <div id="angle"></div>
+        <div id="scaleX"></div>
+        <div id="scaleY"></div>
+      </div>
+    </div>
+    <script src="https://webgl2fundamentals.org/webgl/resources/webgl-lessons-ui.js"></script>
+    <script src="drawWords.js"></script>
     <script src="drawRandomTriangles.js"></script>
+
 </body>
 <style>
 body {
