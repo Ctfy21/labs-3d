@@ -215,6 +215,8 @@ function setGeometryK(gl, offsetX, offsetY) {
   gl.bufferData(
       gl.ARRAY_BUFFER,
       new Float32Array([
+
+          // K
           // left column
           0, 0,
           30, 0,
@@ -231,7 +233,7 @@ function setGeometryK(gl, offsetX, offsetY) {
           67, 150,
           30, 120,
 
-          // middle rung
+          // up rung
           30, 40,
           67, 0,
           97, 0,
@@ -240,6 +242,8 @@ function setGeometryK(gl, offsetX, offsetY) {
           30, 80,
 
 
+
+          // S
           // Horizontal lines
           0 + offsetX, 0 + offsetY,
           97 + offsetX, 0 + offsetY,

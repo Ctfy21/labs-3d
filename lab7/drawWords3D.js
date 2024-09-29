@@ -79,7 +79,7 @@ function main() {
   // Bind it to ARRAY_BUFFER (think of it as ARRAY_BUFFER = positionBuffer)
   gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
   // Set Geometry.
-  setGeometry(gl);
+  setGeometry(gl, 0, 0);
 
   // Tell the attribute how to get data out of positionBuffer (ARRAY_BUFFER)
   var size = 3;          // 3 components per iteration
@@ -120,7 +120,7 @@ function main() {
   // First let's make some variables
   // to hold the translation,
   var translation = [45, 150, 0];
-  var rotation = [degToRad(40), degToRad(25), degToRad(325)];
+  var rotation = [degToRad(0), degToRad(0), degToRad(0)];
   var scale = [1, 1, 1];
   var fudgeFactor = 1;
 
@@ -206,144 +206,250 @@ function main() {
     // Draw the geometry.
     var primitiveType = gl.TRIANGLES;
     var offset = 0;
-    var count = 16 * 6;
+    var count = 16 * 12;
     gl.drawArrays(primitiveType, offset, count);
   }
 }
 
 // Fill the current ARRAY_BUFFER buffer
 // with the values that define a letter 'F'.
-function setGeometry(gl) {
+function setGeometry(gl, offsetX, offsetY) {
   gl.bufferData(
       gl.ARRAY_BUFFER,
       new Float32Array([
           // left column front
-          0,   0,  0,
-          0, 150,  0,
-          30,   0,  0,
-          0, 150,  0,
-          30, 150,  0,
-          30,   0,  0,
+        //   0,   0,  0,
+        //   0, 150,  0,
+        //   30,   0,  0,
+        //   0, 150,  0,
+        //   30, 150,  0,
+        //   30,   0,  0,
 
-          // top rung front
-          30,   0,  0,
-          30,  30,  0,
-          100,   0,  0,
-          30,  30,  0,
-          100,  30,  0,
-          100,   0,  0,
+        //   // K right side to up diagonal
+        //   30, 0, 0,
+        //   30, 40, 0,
+        //   30, 40, 30,
+        //   30, 0, 0,
+        //   30, 40, 30,
+        //   30, 0, 30,
 
-          // middle rung front
-          30,  60,  0,
-          30,  90,  0,
-          67,  60,  0,
-          30,  90,  0,
-          67,  90,  0,
-          67,  60,  0,
+        //   // K right side to up diagonal up
+        //   30, 40, 0,
+        //   67, 0, 0,
+        //   67, 0, 30,
+        //   30, 40, 0,
+        //   67, 0, 30,
+        //   30, 40, 30,   
 
-          // left column back
-            0,   0,  30,
-           30,   0,  30,
-            0, 150,  30,
-            0, 150,  30,
-           30,   0,  30,
-           30, 150,  30,
+        //   // K top side to up diagonal
+        //   67, 0, 0,
+        //   97, 0, 0,
+        //   97, 0, 30,
+        //   67, 0, 0,
+        //   97, 0, 30,
+        //   67, 0, 30,
+          
+        // // K right side to up diagonal bottom
+        //   30, 80, 0,
+        //   97, 0, 30,
+        //   97, 0, 0,
+        //   30, 80, 0,
+        //   30, 80, 30,
+        //   97, 0, 30,          
+          
 
-          // top rung back
-           30,   0,  30,
-          100,   0,  30,
-           30,  30,  30,
-           30,  30,  30,
-          100,   0,  30,
-          100,  30,  30,
+        //   // K front left up diagonal
+        //   30, 40, 0,
+        //   97, 0, 0,
+        //   67, 0, 0,
+        //   30, 40, 0,
+        //   30, 80, 0,
+        //   97, 0, 0,
+ 
+        //   // K back left up diagonal
+        //   30, 40, 30,
+        //   67, 0, 30,
+        //   97, 0, 30,
+        //   30, 40, 30,
+        //   97, 0, 30,
+        //   30, 80, 30,
 
-          // middle rung back
-           30,  60,  30,
-           67,  60,  30,
-           30,  90,  30,
-           30,  90,  30,
-           67,  60,  30,
-           67,  90,  30,
 
-          // top
-            0,   0,   0,
-          100,   0,   0,
-          100,   0,  30,
-            0,   0,   0,
-          100,   0,  30,
-            0,   0,  30,
 
-          // top rung right
-          100,   0,   0,
-          100,  30,   0,
-          100,  30,  30,
-          100,   0,   0,
-          100,  30,  30,
-          100,   0,  30,
+        //   // K front left bottom diagonal
+        //   30, 80, 0,
+        //   67, 150, 0,
+        //   97, 150, 0,
+        //   30, 80, 0,
+        //   30, 120, 0,
+        //   67, 150, 0,   
 
-          // under top rung
-          30,   30,   0,
-          30,   30,  30,
-          100,  30,  30,
-          30,   30,   0,
-          100,  30,  30,
-          100,  30,   0,
+        //   // K back left bottom diagonal
+        //   30, 80, 30,
+        //   97, 150, 30,
+        //   67, 150, 30,
+        //   30, 80, 30,
+        //   67, 150, 30,
+        //   30, 120, 30,  
+          
+        //   // K front right to botton diagonal up
+        //   30, 80, 0,
+        //   97, 150, 0,
+        //   97, 150, 30,
+        //   30, 80, 0,
+        //   97, 150, 30,
+        //   30, 80, 30,
 
-          // between top rung and middle
-          30,   30,   0,
-          30,   60,  30,
-          30,   30,  30,
-          30,   30,   0,
-          30,   60,   0,
-          30,   60,  30,
+        //   // K front right to botton diagonal bottom
+        //   30, 120, 0,
+        //   67, 150, 30,  
+        //   67, 150, 0,
+        //   30, 120, 0,
+        //   30, 120, 30,
+        //   67, 150, 30,
+          
+        //   // K front right bottom bottom    
+        //   67, 150, 0,
+        //   97, 150, 30,
+        //   97, 150, 0,
+        //   67, 150, 0,
+        //   67, 150, 30,    
+        //   97, 150, 30,     
 
-          // top of middle rung
-          30,   60,   0,
-          67,   60,  30,
-          30,   60,  30,
-          30,   60,   0,
-          67,   60,   0,
-          67,   60,  30,
+        //   // left column back
+        //     0,   0,  30,
+        //    30,   0,  30,
+        //     0, 150,  30,
+        //     0, 150,  30,
+        //    30,   0,  30,
+        //    30, 150,  30,
 
-          // right of middle rung
-          67,   60,   0,
-          67,   90,  30,
-          67,   60,  30,
-          67,   60,   0,
-          67,   90,   0,
-          67,   90,  30,
+        //   // top
+        //   0,   0,   0,
+        //   30,   0,   0,
+        //   30,   0,  30,
+        //     0,   0,   0,
+        //   30,   0,  30,
+        //     0,   0,  30,
 
-          // bottom of middle rung.
-          30,   90,   0,
-          30,   90,  30,
-          67,   90,  30,
-          30,   90,   0,
-          67,   90,  30,
-          67,   90,   0,
+        //   // bottom
+        //   0,   150,   0,
+        //   0,   150,  30,
+        //   30,  150,  30,
+        //   0,   150,   0,
+        //   30,  150,  30,
+        //   30,  150,   0,
 
-          // right of bottom
-          30,   90,   0,
-          30,  150,  30,
-          30,   90,  30,
-          30,   90,   0,
-          30,  150,   0,
-          30,  150,  30,
+        //   // left side
+        //   0,   0,   0,
+        //   0,   0,  30,
+        //   0, 150,  30,
+        //   0,   0,   0,
+        //   0, 150,  30,
+        //   0, 150,   0,
 
-          // bottom
-          0,   150,   0,
-          0,   150,  30,
-          30,  150,  30,
-          0,   150,   0,
-          30,  150,  30,
-          30,  150,   0,
 
-          // left side
-          0,   0,   0,
-          0,   0,  30,
-          0, 150,  30,
-          0,   0,   0,
-          0, 150,  30,
-          0, 150,   0,
+        // SSSSSSSSSSSSSSS
+
+        // S Bottom
+        0 + offsetX, 150 + offsetX, 0,
+        97 + offsetX, 150 + offsetX, 30,
+        97 + offsetX, 150 + offsetX, 0,
+        97 + offsetX, 150 + offsetX, 30,
+        0 + offsetX, 150 + offsetX, 0,
+        0 + offsetX, 150 + offsetX, 30,
+
+        // S Close
+        0 + offsetX, 150 + offsetX, 0,
+        97 + offsetX, 150 + offsetX, 30,
+        97 + offsetX, 150 + offsetX, 0,
+        97 + offsetX, 150 + offsetX, 30,
+        0 + offsetX, 150 + offsetX, 0,
+        0 + offsetX, 150 + offsetX, 30,
+
+
+        // S 1 UP
+        // 1 top
+        0 + offsetX, 0 + offsetX, 0,
+        97 + offsetX, 0 + offsetX, 0,
+        97 + offsetX, 0 + offsetX, 30,
+        0 + offsetX, 0 + offsetX, 0,
+        97 + offsetX, 0 + offsetX, 30,
+        0 + offsetX, 0 + offsetX, 30,
+
+        // 1 close
+        0 + offsetX, 0 + offsetX, 0,   
+        97 + offsetX, 30 + offsetX, 0,   
+        97 + offsetX, 0 + offsetX, 0,   
+        97 + offsetX, 30 + offsetX, 0,   
+        0 + offsetX, 0 + offsetX, 0,   
+        0 + offsetX, 30 + offsetX, 0,
+        
+        // 1 right
+        97 + offsetX, 0 + offsetX, 0,  
+        97 + offsetX, 30 + offsetX, 0,  
+        97 + offsetX, 30 + offsetX, 30,  
+        97 + offsetX, 0 + offsetX, 0,  
+        97 + offsetX, 30 + offsetX, 30, 
+        97 + offsetX, 0 + offsetX, 30,
+        
+        // 1 futher
+        0 + offsetX, 0 + offsetX, 30,   
+        97 + offsetX, 0 + offsetX, 30,   
+        97 + offsetX, 30 + offsetX, 30,   
+        0 + offsetX, 0 + offsetX, 30,   
+        97 + offsetX, 30 + offsetX, 30,   
+        0 + offsetX, 30 + offsetX, 30,
+    
+        // 1 bottom
+        30 + offsetX, 30 + offsetX, 0,
+        97 + offsetX, 30 + offsetX, 30,
+        97 + offsetX, 30 + offsetX, 0,
+        97 + offsetX, 30 + offsetX, 30,
+        30 + offsetX, 30 + offsetX, 0,
+        30 + offsetX, 30 + offsetX, 30,
+
+        // 1 left
+        0 + offsetX, 0 + offsetX, 0,  
+        0 + offsetX, 30 + offsetX, 30,  
+        0 + offsetX, 30 + offsetX, 0,  
+        0 + offsetX, 30 + offsetX, 30, 
+        0 + offsetX, 0 + offsetX, 0,  
+        0 + offsetX, 0 + offsetX, 30,
+
+        // S 2 middle
+        // 1 close
+        0 + offsetX, 30 + offsetX, 0,   
+        30 + offsetX, 60 + offsetX, 0,   
+        30 + offsetX, 30 + offsetX, 0,   
+        0 + offsetX, 30 + offsetX, 0,   
+        0 + offsetX, 60 + offsetX, 0,
+        30 + offsetX, 60 + offsetX, 0,   
+        
+        // 1 right
+        30 + offsetX, 30 + offsetX, 0,  
+        30 + offsetX, 60 + offsetX, 0,  
+        30 + offsetX, 30 + offsetX, 30,  
+        30 + offsetX, 30 + offsetX, 30,  
+        30 + offsetX, 60 + offsetX, 0, 
+        30 + offsetX, 60 + offsetX, 30,
+        
+        // 1 futher
+        0 + offsetX, 30 + offsetX, 30,   
+        30 + offsetX, 30 + offsetX, 30,   
+        30 + offsetX, 60 + offsetX, 30,   
+        0 + offsetX, 30 + offsetX, 30,   
+        30 + offsetX, 60 + offsetX, 30, 
+        0 + offsetX, 60 + offsetX, 30,
+
+        // 1 left
+        0 + offsetX, 30 + offsetX, 0,  
+        0 + offsetX, 30 + offsetX, 30,  
+        0 + offsetX, 60 + offsetX, 0,  
+        0 + offsetX, 60 + offsetX, 0, 
+        0 + offsetX, 30 + offsetX, 30,  
+        0 + offsetX, 60 + offsetX, 30,
+
       ]),
       gl.STATIC_DRAW);
 }
@@ -480,6 +586,134 @@ function setColors(gl) {
         160, 160, 220,
         160, 160, 220,
         160, 160, 220,
+
+        200,  70, 120,
+        200,  70, 120,
+        200,  70, 120,
+        200,  70, 120,
+        200,  70, 120,
+        200,  70, 120,
+
+          // top rung front
+        200,  70, 120,
+        200,  70, 120,
+        200,  70, 120,
+        200,  70, 120,
+        200,  70, 120,
+        200,  70, 120,
+
+          // middle rung front
+        200,  70, 120,
+        200,  70, 120,
+        200,  70, 120,
+        200,  70, 120,
+        200,  70, 120,
+        200,  70, 120,
+
+          // left column back
+        80, 70, 200,
+        80, 70, 200,
+        80, 70, 200,
+        80, 70, 200,
+        80, 70, 200,
+        80, 70, 200,
+
+          // top rung back
+        80, 70, 200,
+        80, 70, 200,
+        80, 70, 200,
+        80, 70, 200,
+        80, 70, 200,
+        80, 70, 200,
+
+          // middle rung back
+        80, 70, 200,
+        80, 70, 200,
+        80, 70, 200,
+        80, 70, 200,
+        80, 70, 200,
+        80, 70, 200,
+
+          // top
+        70, 200, 210,
+        70, 200, 210,
+        70, 200, 210,
+        70, 200, 210,
+        70, 200, 210,
+        70, 200, 210,
+
+          // top rung right
+        200, 200, 70,
+        200, 200, 70,
+        200, 200, 70,
+        200, 200, 70,
+        200, 200, 70,
+        200, 200, 70,
+
+          // under top rung
+        210, 100, 70,
+        210, 100, 70,
+        210, 100, 70,
+        210, 100, 70,
+        210, 100, 70,
+        210, 100, 70,
+
+          // between top rung and middle
+        210, 160, 70,
+        210, 160, 70,
+        210, 160, 70,
+        210, 160, 70,
+        210, 160, 70,
+        210, 160, 70,
+
+          // top of middle rung
+        70, 180, 210,
+        70, 180, 210,
+        70, 180, 210,
+        70, 180, 210,
+        70, 180, 210,
+        70, 180, 210,
+
+          // right of middle rung
+        100, 70, 210,
+        100, 70, 210,
+        100, 70, 210,
+        100, 70, 210,
+        100, 70, 210,
+        100, 70, 210,
+
+          // bottom of middle rung.
+        76, 210, 100,
+        76, 210, 100,
+        76, 210, 100,
+        76, 210, 100,
+        76, 210, 100,
+        76, 210, 100,
+
+          // right of bottom
+        140, 210, 80,
+        140, 210, 80,
+        140, 210, 80,
+        140, 210, 80,
+        140, 210, 80,
+        140, 210, 80,
+
+          // bottom
+        90, 130, 110,
+        90, 130, 110,
+        90, 130, 110,
+        90, 130, 110,
+        90, 130, 110,
+        90, 130, 110,
+
+          // left side
+        160, 160, 220,
+        160, 160, 220,
+        160, 160, 220,
+        160, 160, 220,
+        160, 160, 220,
+        160, 160, 220,
+
       ]),
       gl.STATIC_DRAW);
 }
