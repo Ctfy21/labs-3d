@@ -30,7 +30,7 @@ void main() {
 }
 `;
 
-var fragmentShaderSource = `#version 300 es
+var fragmentShaderSource = `#version 300 es 
 
 precision highp float;
 
@@ -117,8 +117,9 @@ function main(canvasId) {
 
   // Bind it to ARRAY_BUFFER (think of it as ARRAY_BUFFER = positionBuffer)
   gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+
   // Set Geometry.
-  setGeometry(gl);
+  setGeometryK(gl, 130, 0);
 
   // Tell the attribute how to get data out of positionBuffer (ARRAY_BUFFER)
   var size = 2;          // 2 components per iteration
@@ -131,7 +132,7 @@ function main(canvasId) {
 
   // First let's make some variables
   // to hold the translation,
-  var translation = [125, 125];
+  var translation = [60, 125];
   var rotationInRadians = 0;
   var scale = [1, 1];
   var color = [Math.random(), Math.random(), Math.random(), 1];
@@ -203,14 +204,14 @@ function main(canvasId) {
     // Draw the geometry.
     var primitiveType = gl.TRIANGLES;
     var offset = 0;
-    var count = 18;
+    var count = 36;
     gl.drawArrays(primitiveType, offset, count);
   }
 }
 
 // Fill the current ARRAY_BUFFER buffer
 // with the values that define a letter 'F'.
-function setGeometry(gl) {
+function setGeometryK(gl, offsetX, offsetY) {
   gl.bufferData(
       gl.ARRAY_BUFFER,
       new Float32Array([
@@ -223,24 +224,56 @@ function setGeometry(gl) {
           30, 150,
 
           // top rung
-          30, 0,
-          100, 0,
-          30, 30,
-          30, 30,
-          100, 0,
-          100, 30,
+          30, 80,
+          67, 150,
+          97, 150,
+          30, 80,
+          67, 150,
+          30, 120,
 
           // middle rung
-          30, 60,
-          67, 60,
-          30, 90,
-          30, 90,
-          67, 60,
-          67, 90,
+          30, 40,
+          67, 0,
+          97, 0,
+          30, 40,
+          97, 0,
+          30, 80,
+
+          0 + offsetX, 0 + offsetY,
+          30 + offsetX, 0 + offsetY,
+          0 + offsetX, 150 + offsetY,
+          0 + offsetX, 150 + offsetY,
+          30 + offsetX, 0 + offsetY,
+          30 + offsetX, 150 + offsetY,
+
+          // top rung
+          30 + offsetX, 80 + offsetY,
+          67 + offsetX, 150 + offsetY,
+          97 + offsetX, 150 + offsetY,
+          30 + offsetX, 80 + offsetY,
+          67 + offsetX, 150 + offsetY,
+          30 + offsetX, 120 + offsetY,
+
+          // middle rung
+          30 + offsetX, 40 + offsetY,
+          67 + offsetX, 0 + offsetY,
+          97 + offsetX, 0 + offsetY,
+          30 + offsetX, 40 + offsetY,
+          97 + offsetX, 0 + offsetY,
+          30 + offsetX, 80 + offsetY,
       ]),
       gl.STATIC_DRAW);
 }
 
+function setGeometryS(gl, offsetX, offsetY) {
+    gl.bufferData(
+        gl.ARRAY_BUFFER,
+        new Float32Array([
+            // left column
+
+        ]),
+        gl.STATIC_DRAW);
+  }
 
 
 var m3 = {
