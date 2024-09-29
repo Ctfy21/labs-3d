@@ -139,8 +139,8 @@ function main(canvasId) {
 
   drawScene();
 
-  webglLessonsUI.setupSlider("#x",      {value: translation[0], slide: updatePosition(0), max: gl.canvas.width });
-  webglLessonsUI.setupSlider("#y",      {value: translation[1], slide: updatePosition(1), max: gl.canvas.height});
+  webglLessonsUI.setupSlider("#x",      {value: translation[0], slide: updatePosition(0), max: gl.canvas.width - 147 - 50 - 30 });
+  webglLessonsUI.setupSlider("#y",      {value: translation[1], slide: updatePosition(1), max: gl.canvas.height - 150});
   webglLessonsUI.setupSlider("#angle",  {value: rotationInRadians * 180 / Math.PI | 0, slide: updateAngle, max: 360});
   webglLessonsUI.setupSlider("#scaleX", {value: scale[0], slide: updateScale(0), min: -5, max: 5, step: 0.01, precision: 2});
   webglLessonsUI.setupSlider("#scaleY", {value: scale[1], slide: updateScale(1), min: -5, max: 5, step: 0.01, precision: 2});
@@ -204,7 +204,7 @@ function main(canvasId) {
     // Draw the geometry.
     var primitiveType = gl.TRIANGLES;
     var offset = 0;
-    var count = 36;
+    var count = 48;
     gl.drawArrays(primitiveType, offset, count);
   }
 }
@@ -239,28 +239,45 @@ function setGeometryK(gl, offsetX, offsetY) {
           97, 0,
           30, 80,
 
+
+          // Horizontal lines
           0 + offsetX, 0 + offsetY,
-          30 + offsetX, 0 + offsetY,
-          0 + offsetX, 150 + offsetY,
-          0 + offsetX, 150 + offsetY,
-          30 + offsetX, 0 + offsetY,
-          30 + offsetX, 150 + offsetY,
+          97 + offsetX, 0 + offsetY,
+          97 + offsetX, 30 + offsetY,
+          0 + offsetX, 0 + offsetY,
+          97 + offsetX, 30 + offsetY,
+          0 + offsetX, 30 + offsetY,
 
-          // top rung
-          30 + offsetX, 80 + offsetY,
-          67 + offsetX, 150 + offsetY,
+          0 + offsetX, 60 + offsetY,
+          97 + offsetX, 60 + offsetY,
+          97 + offsetX, 90 + offsetY,
+          0 + offsetX, 60 + offsetY,
+          97 + offsetX, 90 + offsetY,
+          0 + offsetX, 90 + offsetY,
+
+          0 + offsetX, 120 + offsetY,
+          97 + offsetX, 120 + offsetY,
           97 + offsetX, 150 + offsetY,
-          30 + offsetX, 80 + offsetY,
-          67 + offsetX, 150 + offsetY,
-          30 + offsetX, 120 + offsetY,
+          0 + offsetX, 120 + offsetY,
+          97 + offsetX, 150 + offsetY,
+          0 + offsetX, 150 + offsetY,
 
-          // middle rung
-          30 + offsetX, 40 + offsetY,
-          67 + offsetX, 0 + offsetY,
-          97 + offsetX, 0 + offsetY,
-          30 + offsetX, 40 + offsetY,
-          97 + offsetX, 0 + offsetY,
-          30 + offsetX, 80 + offsetY,
+
+          // Vertical lines
+          0 + offsetX, 30 + offsetY,
+          0 + offsetX, 60 + offsetY,
+          30 + offsetX, 60 + offsetY,
+          0 + offsetX, 30 + offsetY,
+          30 + offsetX, 60 + offsetY,
+          30 + offsetX, 30 + offsetY,
+
+
+          67 + offsetX, 90 + offsetY,
+          67 + offsetX, 120 + offsetY,
+          97 + offsetX, 120 + offsetY,
+          67 + offsetX, 90 + offsetY,
+          97 + offsetX, 120 + offsetY,
+          97 + offsetX, 90 + offsetY,
       ]),
       gl.STATIC_DRAW);
 }
